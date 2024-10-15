@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import service.ServiceFactory;
@@ -23,6 +25,7 @@ import service.custom.ItemService;
 import service.custom.OrderService;
 import util.ServiceType;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -127,6 +130,12 @@ public class OrderController implements Initializable {
     @FXML
     private TextField viewItemName;
 
+    @FXML
+    private ImageView itemViewImage;
+
+    @FXML
+    private ImageView cartViewImage;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTimeandDate();
@@ -197,6 +206,7 @@ public class OrderController implements Initializable {
         txtItemPrice.setText(String.valueOf(item.getPrice()));
         txtItemQty.setText(String.valueOf(item.getQty()));
         txtItemSize.setText(item.getSize());
+        itemViewImage.setImage(new Image(new ByteArrayInputStream(item.getImage())));
     }
 
     @FXML
@@ -237,7 +247,7 @@ public class OrderController implements Initializable {
             selectedItem.setQty(availableQty);
             itemTbl.refresh();
 
-            cartTMObservableList.add(new CartTM(itemId,name,qty,price,size,total));
+            cartTMObservableList.add(new CartTM(itemId,name,qty,price,size,total,selectedItem.getImage()));
             calcNetTotal();
 
             cartTbl.setItems(cartTMObservableList);
@@ -251,6 +261,7 @@ public class OrderController implements Initializable {
             txtItemSize.setText("");
             txtItemPrice.setText("");
             txtQty.setText("");
+            itemViewImage.setImage(null);
         }
     }
 
@@ -269,8 +280,9 @@ public class OrderController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING, "No items in the cart to place an order.");
             alert.show();
         }else if (txtEmail.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Empty Field or Fields");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Enter Customer Email");
             alert.show();
+            txtEmail.requestFocus();
         }else if(!isValidEmail(txtEmail.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Email!");
             alert.show();
@@ -293,8 +305,22 @@ public class OrderController implements Initializable {
             orderService.placeOrder(order);
 
             cartTMObservableList.clear();
+            itemTbl.refresh();
+
             lblItemCount.setText("Item Count :- 0");
             lblSubTotal.setText("Sub Total :- 0.0/=");
+
+            txtItemId.setText("");
+            txtItemName.setText("");
+            txtItemQty.setText("");
+            txtItemSize.setText("");
+            txtItemPrice.setText("");
+            txtQty.setText("");
+
+            viewItemId.setText("");
+            viewItemName.setText("");
+            cartViewImage.setImage(null);
+
             generateOrderId();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!");
@@ -310,6 +336,7 @@ public class OrderController implements Initializable {
     private void setDeleteBtn(CartTM cartItem) {
         viewItemId.setText(cartItem.getItemId());
         viewItemName.setText(cartItem.getName());
+        cartViewImage.setImage(new Image(new ByteArrayInputStream(cartItem.getImage())));
     }
 
     @FXML
@@ -327,6 +354,7 @@ public class OrderController implements Initializable {
             cartTMObservableList.remove(selectedItem);
             viewItemId.setText("");
             viewItemName.setText("");
+            cartViewImage.setImage(null);
 
             calcNetTotal();
             lblItemCount.setText("Item Count :- " + cartTMObservableList.size());

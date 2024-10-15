@@ -16,4 +16,5 @@ public class CartTM {
     private double price;
     private String size;
     private double total;
+    private byte[] image;
 }

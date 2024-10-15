@@ -1,7 +1,6 @@
 package dto;
 
 import lombok.*;
-import util.SizeType;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +14,5 @@ public class Item {
     private Double price;
     private Integer qty;
     private String size;
-    private String image;
+    private byte[] image;
 }

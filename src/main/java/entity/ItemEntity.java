@@ -20,7 +20,9 @@ public class ItemEntity {
 
     private String name;
 
-    private String supId;
+    @ManyToOne
+    @JoinColumn(name = "supId", referencedColumnName = "supId")
+    private SupplierEntity supplier;
 
     private Double price;
 
@@ -29,9 +31,19 @@ public class ItemEntity {
     private String size;
 
     @Lob
-    @Column(name = "image", columnDefinition = "LONGTEXT")
-    private String image;
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private Set<OrderDetailsEntity> orderDetails;
 }
+
+
+
+
+
+
+
+
+
+

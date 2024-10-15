@@ -1,5 +1,6 @@
 package controller;
 
+import dto.CartTM;
 import dto.Employee;
 import dto.Item;
 import dto.Supplier;
@@ -9,17 +10,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.ItemService;
 import service.custom.SupplierService;
 import util.ServiceType;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -111,6 +119,15 @@ public class ItemController implements Initializable {
     @FXML
     private TextField viewSupName;
 
+    @FXML
+    private ImageView inpImageView;
+
+    @FXML
+    private ImageView editImageView;
+
+    private byte[] inpImageByte=null;
+    private byte[] editImageByte=null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         generateSupId();
@@ -171,6 +188,7 @@ public class ItemController implements Initializable {
         viewItemQty.setText(String.valueOf(item.getQty()));
         viewSizeList.setValue(item.getSize());
         viewSupList.setValue(item.getSupId());
+        editImageView.setImage(new Image(new ByteArrayInputStream(item.getImage())));
     }
 
     private void generateSupId(){
@@ -226,20 +244,47 @@ public class ItemController implements Initializable {
     }
 
     @FXML
+    void btnAddItemImageOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                Image image = new Image(selectedFile.toURI().toString());
+                inpImageView.setImage(image);
+                inpImageByte = Files.readAllBytes(selectedFile.toPath());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No file selected.");
+        }
+    }
+
+
+    @FXML
     void btnAddItemOnAction(ActionEvent event) {
         if (txtItemName.getText().isEmpty() || txtItemPrice.getText().isEmpty() || txtItemQty.getText().isEmpty() || supList.getValue()==null || sizeList.getValue()==null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Empty Field or Fields");
             alert.show();
-        }else{
+        } else if (!isNumeric(txtItemPrice.getText()) || !isNumeric(txtItemQty.getText())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Numeric Input");
+            alert.show();
+        } else{
 
-            Item item = new Item(txtItemId.getText(), txtItemName.getText(),supList.getValue(), Double.parseDouble(txtItemPrice.getText()), Integer.parseInt(txtItemQty.getText()),sizeList.getValue(),"qqqqqq");
+            Item item = new Item(txtItemId.getText(), txtItemName.getText(),supList.getValue(), Double.parseDouble(txtItemPrice.getText()), Integer.parseInt(txtItemQty.getText()),sizeList.getValue(),inpImageByte);
             System.out.println(item);
 
             if (itemService.addItem(item)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Added Successfully");
                 alert.show();
             }
-
 
             generateItemId();
             loadItemTable();
@@ -249,12 +294,12 @@ public class ItemController implements Initializable {
             txtItemPrice.setText("");
             supList.setValue(null);
             sizeList.setValue(null);
+            inpImageView.setImage(null);
+            inpImageByte=null;
 
             txtItemName.requestFocus();
         }
     }
-
-
 
     @FXML
     void btnAddSupOnAction(ActionEvent event) {
@@ -346,6 +391,29 @@ public class ItemController implements Initializable {
     }
 
     @FXML
+    void btnUpdateItemImageOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Edit Image File");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                Image image = new Image(selectedFile.toURI().toString());
+                editImageView.setImage(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No file selected.");
+        }
+    }
+
+    @FXML
     void btnUpdateItemOnAction(ActionEvent event) {
         Item selectedItem = itemTbl.getSelectionModel().getSelectedItem();
 
@@ -359,8 +427,14 @@ public class ItemController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Empty Field or Fields");
             alert.show();
         }else{
+            Item item=null;
 
-            Item item = new Item(viewItemId.getText(), viewItemName.getText(),viewSupList.getValue(), Double.parseDouble(viewItemPrice.getText()), Integer.parseInt(viewItemQty.getText()),viewSizeList.getValue(),"qqqqqq");
+            if (editImageByte==null){
+                item = new Item(viewItemId.getText(), viewItemName.getText(),viewSupList.getValue(), Double.parseDouble(viewItemPrice.getText()), Integer.parseInt(viewItemQty.getText()),viewSizeList.getValue(),selectedItem.getImage());
+            }else{
+                item = new Item(viewItemId.getText(), viewItemName.getText(),viewSupList.getValue(), Double.parseDouble(viewItemPrice.getText()), Integer.parseInt(viewItemQty.getText()),viewSizeList.getValue(),editImageByte);
+            }
+
             System.out.println(item);
 
             if (itemService.updateItem(item)) {
@@ -376,6 +450,8 @@ public class ItemController implements Initializable {
             viewItemQty.setText("");
             viewSupList.setValue(null);
             viewSizeList.setValue(null);
+            editImageView.setImage(null);
+            editImageByte=null;
         }
     }
 
@@ -447,6 +523,18 @@ public class ItemController implements Initializable {
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private boolean isNumeric(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
