@@ -1,0 +1,164 @@
+/* Applying rounded corners to the pane */
+.pane {
+    -fx-background-color: #ffffff; /* Light neutral background */
+        -fx-border-color: #ced4da;  /* Set border color */
+    -fx-border-width: 2px; /* Set border width */
+
+    -fx-border-radius: 20px; /* Rounded border */
+    -fx-background-radius: 20px; /* Rounded background to match the border */
+
+    -fx-padding: 10px; /* Optional: padding inside the pane */
+}
+
+/* Text Areas (Input Fields) */
+.text-area {
+    -fx-background-color: #ffffff; /* White background for input fields */
+    -fx-text-fill: #495057; /* Bootstrap dark text */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-color: #ced4da; /* Light gray border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Slightly rounded inputs */
+}
+
+/* Buttons */
+.add-button {
+    -fx-background-color: #007bff; /* Teal button */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px; /* Soft rounded button */
+}
+
+.add-button:hover {
+    -fx-background-color: #009bff; /* Slightly darker teal on hover */
+}
+
+.update-button {
+    -fx-background-color: green; /* Teal button */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px; /* Soft rounded button */
+}
+
+.update-button:hover {
+    -fx-background-color: #049609; /* Slightly darker teal on hover */
+}
+
+.delete-button {
+    -fx-background-color: red; /* Teal button */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px; /* Soft rounded button */
+}
+
+.delete-button:hover {
+    -fx-background-color: #cf2d2d; /* Slightly darker teal on hover */
+}
+
+.label-item {
+
+    -fx-text-fill: #212529; /* Dark gray for labels */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 16px;
+}
+
+.label-title {
+    -fx-text-fill: #333333; /* Darker charcoal for more contrast */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-text-fill: #212529; /* Dark gray for labels */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold; /* Bold text */
+}
+
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: #ffffff; /* White background for the table */
+    -fx-border-color: #ced4da; /* Light gray border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-padding: 10px; /* Padding around the table */
+    -fx-font-family: "Segoe UI", Arial, sans-serif; /* Font family */
+}
+
+/* Header Cells */
+.table-view .column-header {
+    -fx-background-color: #009bff; /* Bootstrap primary color for header */
+    -fx-text-fill: #ffffff; /* White text for header (changed to white) */
+    -fx-font-weight: bold; /* Bold font for header */
+    -fx-font-size: 16px; /* Font size for header */
+}
+
+/* Table Rows */
+.table-view .table-row-cell {
+    -fx-background-color: #ffffff; /* White background for rows */
+    -fx-text-fill: #212529; /* Dark gray text for rows */
+}
+
+/* Selected Row Color */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #007bff; /* Selected row color */
+    -fx-text-fill: black; /* Changed text color to black when row is selected */
+}
+
+/* Cell Padding */
+.table-view .table-cell {
+    -fx-padding: 10px; /* Padding inside each cell */
+}
+
+/* Hover Effect on Rows */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f1f1f1; /* Light gray hover effect */
+}
+
+/* Resize Handle */
+.table-view .column-header .table-header-column {
+    -fx-padding: 0; /* Remove padding for header columns */
+    -fx-border-color: transparent; /* Remove border from header columns */
+}
+
+/* ComboBox Styling */
+.combo-box {
+    -fx-background-color: #ffffff; /* White background for combo box */
+    -fx-text-fill: #495057; /* Dark gray text */
+    -fx-font-family: "Segoe UI", Arial, sans-serif; /* Font family */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 5px; /* Padding inside the combo box */
+    -fx-border-color: #ced4da; /* Light gray border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Slightly rounded corners */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #ced4da; /* Light gray background for dropdown arrow */
+    -fx-padding: 5px; /* Padding for the arrow button */
+}
+
+.combo-box:hover {
+    -fx-background-color: #f8f9fa; /* Light gray background on hover */
+}
+
+.combo-box .list-cell {
+    -fx-padding: 10px; /* Padding inside dropdown items */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #f1f1f1; /* Light gray hover effect for dropdown items */
+}
+
+/* Selected item color inside ComboBox */
+.combo-box .combo-box-base:focused {
+    -fx-background-color: #ffffff; /* Keep white background when focused */
+    -fx-border-color: #007bff; /* Add focus border color */
+}
+
+/* Dropdown list styling */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff; /* White background for the dropdown list */
+    -fx-border-color: #ced4da; /* Light gray border */
+}
+

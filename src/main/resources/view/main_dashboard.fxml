@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainDashboardController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: 00D1FF;">
+         <children>
+            <Button layoutX="217.0" layoutY="151.0" mnemonicParsing="false" onAction="#EmpBtnOnAction" prefHeight="46.0" prefWidth="120.0" style="-fx-background-color: 00D1FF;" text="Employee" />
+            <Button layoutX="217.0" layoutY="200.0" mnemonicParsing="false" onAction="#OrderBtnOnAction" prefHeight="46.0" prefWidth="120.0" text="Order">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-primary" />
+               </styleClass>
+            </Button>
+            <JFXButton layoutX="225.0" layoutY="91.0" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: 0, 209, 255;" text="Hello" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
