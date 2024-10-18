@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin loginAdmin(String email, String password) {
         AdminDao adminDao = DaoFactory.getInstance().getDaoType(DaoType.ADMIN);
-        AdminEntity entity = adminDao.getUserByEmail(email);
+        //AdminEntity entity = adminDao.getUserByEmail(email);
         if (entity == null || !BCrypt.checkpw(password, entity.getPassword())) {
             return null;
         }else {
