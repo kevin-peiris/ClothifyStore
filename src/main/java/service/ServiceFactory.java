@@ -4,10 +4,7 @@ import repository.custom.impl.EmployeeDaoImpl;
 import repository.custom.impl.ItemDaoImpl;
 import repository.custom.impl.SupplierDaoImpl;
 import service.custom.EmployeeService;
-import service.custom.impl.EmployeeServiceImpl;
-import service.custom.impl.ItemServiceImpl;
-import service.custom.impl.OrderServiceImpl;
-import service.custom.impl.SupplierServiceImpl;
+import service.custom.impl.*;
 import util.ServiceType;
 
 public class ServiceFactory {
@@ -25,7 +22,9 @@ public class ServiceFactory {
             case ORDER: return (T) new OrderServiceImpl();
             case ITEM: return (T) new ItemServiceImpl();
             case SUPPLIER: return (T) new SupplierServiceImpl();
-            case ORDER_DETAILS: return (T) new OrderServiceImpl();
+            case ORDER_DETAILS: return (T) new OrderDetailsServiceImpl();
+            case USER: return (T) new UserServiceImpl();
+            case ADMIN: return (T) new AdminServiceImpl();
         }
 
         return null;

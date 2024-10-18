@@ -188,7 +188,9 @@ public class ItemController implements Initializable {
         viewItemQty.setText(String.valueOf(item.getQty()));
         viewSizeList.setValue(item.getSize());
         viewSupList.setValue(item.getSupId());
-        editImageView.setImage(new Image(new ByteArrayInputStream(item.getImage())));
+        if (item.getImage() != null) {
+            editImageView.setImage(new Image(new ByteArrayInputStream(item.getImage())));
+        }
     }
 
     private void generateSupId(){
@@ -223,11 +225,8 @@ public class ItemController implements Initializable {
         ObservableList<Item> itemList = itemService.getAll();
         if (!itemList.isEmpty()) {
             Item lastItem = itemList.getLast();
-
             String lastItemId = lastItem.getItemId();
-
             String lastStringItemCount = lastItemId.substring(lastItemId.length() - 3);
-
             lastItemCount = Integer.parseInt(lastStringItemCount);
         }
 
@@ -361,6 +360,7 @@ public class ItemController implements Initializable {
         viewItemQty.setText("");
         viewSupList.setValue(null);
         viewSizeList.setValue(null);
+        editImageView.setImage(null);
 
     }
 
@@ -405,6 +405,7 @@ public class ItemController implements Initializable {
             try {
                 Image image = new Image(selectedFile.toURI().toString());
                 editImageView.setImage(image);
+                editImageByte = Files.readAllBytes(selectedFile.toPath());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -498,6 +499,13 @@ public class ItemController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -509,6 +517,13 @@ public class ItemController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -520,6 +535,13 @@ public class ItemController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

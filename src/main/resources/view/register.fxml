@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="686.0" style="-fx-background-color: #00D1FF;">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="319.0">
+               <image>
+                  <Image url="@../image/Screenshot%202024-10-17%20105957.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="332.0" layoutY="11.0" prefHeight="382.0" prefWidth="340.0" style="-fx-background-color: #314C80;">
+               <children>
+                  <Label layoutX="96.0" prefHeight="58.0" prefWidth="149.0" text="Register" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="68.0" prefHeight="40.0" prefWidth="64.0" text="Email" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="17.0" layoutY="249.0" prefHeight="40.0" prefWidth="112.0" text="Password" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtEmail" layoutX="96.0" layoutY="68.0" prefHeight="40.0" prefWidth="228.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="txtPassword" layoutX="138.0" layoutY="250.0" prefHeight="40.0" prefWidth="186.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <JFXButton layoutX="17.0" layoutY="184.0" onAction="#btnSendOTPOnAction" prefHeight="36.0" prefWidth="96.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Send OTP" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="109.0" layoutY="320.0" onAction="#btnRegisterOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Register" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <TextField fx:id="txtOTP" layoutX="129.0" layoutY="182.0" prefHeight="40.0" prefWidth="96.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="roleList" layoutX="96.0" layoutY="120.0" prefHeight="52.0" prefWidth="228.0" promptText="Select Role" stylesheets="@../CSS/1.css" />
+                  <Label layoutX="18.0" layoutY="126.0" prefHeight="40.0" prefWidth="64.0" text="Role" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

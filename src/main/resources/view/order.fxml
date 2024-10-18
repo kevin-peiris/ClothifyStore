@@ -40,12 +40,12 @@
                      </font>
                   </JFXButton>
                   <Pane layoutX="501.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-                  <JFXButton layoutX="503.0" onAction="#OrderPageOnAction" prefHeight="16.0" prefWidth="111.0" text="Order" textFill="WHITE">
+                  <JFXButton layoutX="503.0" onAction="#OrderReportsPageOnAction" prefHeight="42.0" prefWidth="151.0" text="Order Reports" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <Pane layoutX="613.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+                  <Pane layoutX="653.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
             <Pane layoutX="14.0" layoutY="49.0" prefHeight="287.0" prefWidth="396.0" styleClass="pane" stylesheets="@../CSS/1.css">

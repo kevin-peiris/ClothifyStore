@@ -27,4 +27,12 @@ public class OrderDetailsEntity {
     private Integer qty;
 
     private Double price;
+
+    private String size;
+
+    private double total;
+
+    @Lob
+    @ Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 }

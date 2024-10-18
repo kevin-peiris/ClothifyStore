@@ -75,7 +75,7 @@ public class AddNewEmployeeController implements Initializable {
             txtPassword.selectAll();
         }else{
 
-            Employee employee = new Employee(txtId.getText(), txtName.getText(), txtEmail.getText(), txtPassword.getText());
+            Employee employee = new Employee();
             System.out.println(employee);
 
             if (service.addEmployee(employee)) {
@@ -178,7 +178,7 @@ public class AddNewEmployeeController implements Initializable {
             txtPassword.selectAll();
         }else{
 
-            Employee employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText());
+            Employee employee = new Employee();
             System.out.println(employee);
 
             if (service.updateEmployee(employee)) {

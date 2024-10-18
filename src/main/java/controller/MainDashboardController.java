@@ -26,7 +26,7 @@ public class MainDashboardController {
         String id=String.format("E%03d",empCount);
         empCount++;
 
-        service.addEmployee(new Employee(id,"Amal","1","1"));
+        //service.addEmployee(new Employee(id,"Amal","1","1"));
     }
 
     @FXML

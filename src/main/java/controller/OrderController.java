@@ -298,7 +298,7 @@ public class OrderController implements Initializable {
             List<OrderDetails> orderDetailsList=new ArrayList<>();
 
             cartTMObservableList.forEach(obj->{
-                orderDetailsList.add(new OrderDetails(txtOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice()));
+                orderDetailsList.add(new OrderDetails(txtOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice(),obj.getSize(),obj.getTotal(),obj.getImage()));
             });
 
             Order order = new Order(txtOrderId.getText(), LocalDateTime.now(), txtEmpId.getText(),txtEmail.getText(), orderDetailsList);
@@ -369,6 +369,13 @@ public class OrderController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -380,6 +387,13 @@ public class OrderController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -387,10 +401,17 @@ public class OrderController implements Initializable {
     }
 
     @FXML
-    void OrderPageOnAction(ActionEvent event) {
+    void OrderReportsPageOnAction(ActionEvent event) {
         Stage stage=new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order_reports.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

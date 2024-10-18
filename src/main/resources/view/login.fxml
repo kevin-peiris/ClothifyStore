@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="686.0" style="-fx-background-color: #00D1FF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="319.0">
+         <image>
+            <Image url="@../image/Screenshot%202024-10-17%20105957.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="332.0" layoutY="11.0" prefHeight="382.0" prefWidth="340.0" style="-fx-background-color: #314C80;">
+         <children>
+            <Label layoutX="121.0" layoutY="14.0" prefHeight="58.0" prefWidth="99.0" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="129.0" prefHeight="40.0" prefWidth="64.0" text="Email" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="198.0" prefHeight="40.0" prefWidth="112.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEmail" layoutX="93.0" layoutY="129.0" prefHeight="40.0" prefWidth="228.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPassword" layoutX="140.0" layoutY="199.0" prefHeight="40.0" prefWidth="186.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <JFXButton layoutX="108.0" layoutY="279.0" onAction="#btnLoginOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="108.0" layoutY="332.0" onAction="#btnRegisterOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Register" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Unicode" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

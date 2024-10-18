@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeReportsController">
+   <children>
+      <Pane prefHeight="590.0" prefWidth="1031.0" style="-fx-background-color: #f1f3f5;" stylesheets="">
+         <children>
+            <Pane layoutX="7.0" layoutY="72.0" prefHeight="498.0" prefWidth="422.0" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Employees">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <TableView id="tbl" fx:id="tbl" layoutX="11.0" layoutY="35.0" prefHeight="443.0" prefWidth="398.0">
+                     <columns>
+                        <TableColumn id="colId" fx:id="colId" prefWidth="60.00000190734863" text="EmpId" />
+                        <TableColumn id="colName" fx:id="colName" prefWidth="132.0000228881836" text="Full Name" />
+                        <TableColumn id="colEmail" fx:id="colEmail" prefWidth="183.199951171875" text="Email" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <Pane layoutX="437.0" layoutY="72.0" prefHeight="185.0" prefWidth="573.0" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <TextField fx:id="viewId" editable="false" layoutX="194.0" layoutY="63.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="viewName" layoutX="393.0" layoutY="63.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="viewEmail" layoutX="197.0" layoutY="133.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Employee">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="197.0" layoutY="40.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="EmpId" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="393.0" layoutY="40.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Full Name" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="197.0" layoutY="114.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Email" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="viewPassword" layoutX="393.0" layoutY="133.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="393.0" layoutY="114.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Password" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="editImageView" fitHeight="135.0" fitWidth="166.0" layoutX="10.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <PieChart fx:id="empChart" layoutX="437.0" layoutY="265.0" prefHeight="314.0" prefWidth="573.0" />
+            <Pane prefHeight="40.0" prefWidth="1031.0" style="-fx-background-color: black;" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="3.0" layoutY="1.0" prefHeight="40.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="167.0" onAction="#EmployeePageOnAction" prefHeight="13.0" prefWidth="111.0" text="Employee" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane layoutX="165.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+                  <Pane layoutX="277.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+                  <JFXButton layoutX="279.0" onAction="#ItemPageOnAction" prefHeight="26.0" prefWidth="111.0" text="Item" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane layoutX="389.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+                  <JFXButton layoutX="391.0" prefHeight="1.0" prefWidth="111.0" text="Sales" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane layoutX="501.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+                  <JFXButton layoutX="503.0" onAction="#OrderPageOnAction" prefHeight="16.0" prefWidth="111.0" text="Order" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane layoutX="613.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

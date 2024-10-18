@@ -31,7 +31,7 @@ public class ItemEntity {
     private String size;
 
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
+    @ Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)

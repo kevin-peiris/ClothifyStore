@@ -1,32 +1,40 @@
 package controller;
 
+import dto.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import dto.Employee;
 import javafx.collections.ObservableList;
 
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.EmployeeService;
+import service.custom.UserService;
+import util.RoleType;
 import util.ServiceType;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class EmployeeController implements Initializable {
     EmployeeService service= ServiceFactory.getInstance().getServiceType(ServiceType.EMPLOYEE);
+    UserService userService= ServiceFactory.getInstance().getServiceType(ServiceType.USER);
 
     @FXML
     private TableColumn<?, ?> colEmail;
@@ -65,6 +73,39 @@ public class EmployeeController implements Initializable {
     private TextField viewPassword;
 
     @FXML
+    private ImageView inpImageView;
+
+    @FXML
+    private ImageView editImageView;
+
+    private byte[] inpImageByte=null;
+    private byte[] editImageByte=null;
+
+    @FXML
+    void btnAddItemImageOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                Image image = new Image(selectedFile.toURI().toString());
+                inpImageView.setImage(image);
+                inpImageByte = Files.readAllBytes(selectedFile.toPath());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No file selected.");
+        }
+    }
+
+    @FXML
     void btnAddEmpOnAction(ActionEvent event) {
         if (txtName.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Empty Field or Fields");
@@ -79,7 +120,10 @@ public class EmployeeController implements Initializable {
             txtPassword.selectAll();
         }else{
 
-            Employee employee = new Employee(txtId.getText(), txtName.getText(), txtEmail.getText(), txtPassword.getText());
+            Employee employee = new Employee(txtId.getText(), txtName.getText(), txtEmail.getText(), txtPassword.getText(),0,inpImageByte);
+
+            userService.registerUser(new User(employee.getEmpId(),employee.getEmail(),employee.getPassword(), "Employee"));
+
             System.out.println(employee);
 
             if (service.addEmployee(employee)) {
@@ -93,6 +137,8 @@ public class EmployeeController implements Initializable {
             txtName.setText("");
             txtEmail.setText("");
             txtPassword.setText("");
+            inpImageView.setImage(null);
+            inpImageByte=null;
 
             txtName.requestFocus();
         }
@@ -126,6 +172,9 @@ public class EmployeeController implements Initializable {
         viewName.setText(employee.getName());
         viewEmail.setText(employee.getEmail());
         viewPassword.setText(employee.getPassword());
+        if (employee.getImage()!=null){
+            editImageView.setImage(new Image(new ByteArrayInputStream(employee.getImage())));
+        }
     }
 
     private void generateEmpId(){
@@ -175,6 +224,31 @@ public class EmployeeController implements Initializable {
         viewName.setText("");
         viewEmail.setText("");
         viewPassword.setText("");
+        editImageView.setImage(null);
+    }
+
+    @FXML
+    void btnUpdateItemImageOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Edit Image File");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (selectedFile != null) {
+            try {
+                Image image = new Image(selectedFile.toURI().toString());
+                editImageView.setImage(image);
+                editImageByte = Files.readAllBytes(selectedFile.toPath());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No file selected.");
+        }
     }
 
     @FXML
@@ -199,8 +273,14 @@ public class EmployeeController implements Initializable {
             alert.show();
             txtPassword.selectAll();
         }else{
+            Employee employee =null;
 
-            Employee employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText());
+            if (editImageByte==null){
+                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText(),selectedEmployee.getOrderCount(),selectedEmployee.getImage());
+            }else{
+                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText(),selectedEmployee.getOrderCount(),editImageByte);
+            }
+
             System.out.println(employee);
 
             if (service.updateEmployee(employee)) {
@@ -214,15 +294,18 @@ public class EmployeeController implements Initializable {
             viewName.setText("");
             viewEmail.setText("");
             viewPassword.setText("");
+            editImageView.setImage(null);
+            editImageByte=null;
         }
 
     }
 
     @FXML
-    void EmployeePageOnAction(ActionEvent event) {
+    void EmployeeReportsPageOnAction(ActionEvent event) {
         Stage stage=new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_reports.fxml"))));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -234,6 +317,7 @@ public class EmployeeController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -245,6 +329,13 @@ public class EmployeeController implements Initializable {
         Stage stage=new Stage();
         try {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                    closeEvent.consume();
+                }
+            });
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

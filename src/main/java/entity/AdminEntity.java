@@ -11,16 +11,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "employee")
-public class EmployeeEntity {
+@Table(name = "admin")
+public class AdminEntity {
     @Id
-    private String empId;
-    private String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String password;
-    private Integer orderCount;
-
-    @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
-    private byte[] image;
+    private String role;
 }
