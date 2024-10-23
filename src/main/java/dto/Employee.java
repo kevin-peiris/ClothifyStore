@@ -11,7 +11,6 @@ public class Employee {
     private String empId;
     private String name;
     private String email;
-    private String password;
     private Integer orderCount;
     private byte[] image;
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -12,50 +12,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderController">
    <children>
-      <Pane layoutX="-1.0" prefHeight="651.0" prefWidth="1018.0" style="-fx-background-color: #f1f3f5;" stylesheets="">
+      <Pane layoutX="-1.0" prefHeight="610.0" prefWidth="1178.0" style="-fx-background-color: #F5F5F5;" stylesheets="">
          <children>
-            <Pane prefHeight="40.0" prefWidth="1025.0" style="-fx-background-color: black;" stylesheets="@../CSS/1.css">
+            <Pane layoutX="177.0" layoutY="10.0" prefHeight="287.0" prefWidth="396.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
                <children>
-                  <Label layoutX="3.0" layoutY="1.0" prefHeight="40.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <JFXButton layoutX="167.0" onAction="#EmployeePageOnAction" prefHeight="13.0" prefWidth="111.0" text="Employee" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <Pane layoutX="165.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-                  <Pane layoutX="277.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-                  <JFXButton layoutX="279.0" onAction="#ItemPageOnAction" prefHeight="26.0" prefWidth="111.0" text="Item" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <Pane layoutX="389.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-                  <JFXButton layoutX="391.0" prefHeight="1.0" prefWidth="111.0" text="Sales" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <Pane layoutX="501.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-                  <JFXButton layoutX="503.0" onAction="#OrderReportsPageOnAction" prefHeight="42.0" prefWidth="151.0" text="Order Reports" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="18.0" />
-                     </font>
-                  </JFXButton>
-                  <Pane layoutX="653.0" prefHeight="40.0" prefWidth="2.0" style="-fx-background-color: white;" />
-               </children>
-            </Pane>
-            <Pane layoutX="14.0" layoutY="49.0" prefHeight="287.0" prefWidth="396.0" styleClass="pane" stylesheets="@../CSS/1.css">
-               <children>
-                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Items">
+                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" text="Items" textFill="#333333">
                      <font>
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <TableView id="tbl" fx:id="itemTbl" layoutX="14.0" layoutY="38.0" prefHeight="225.0" prefWidth="367.0">
+                  <TableView id="tbl" fx:id="itemTbl" layoutX="14.0" layoutY="38.0" prefHeight="225.0" prefWidth="347.0" stylesheets="@../CSS/1.css">
                      <columns>
                         <TableColumn id="colId" fx:id="colItemId" prefWidth="60.00000190734863" text="Item Id" />
                         <TableColumn id="colName" fx:id="colItemName" prefWidth="108.79998779296875" text="Name" />
@@ -66,14 +32,14 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane layoutX="14.0" layoutY="344.0" prefHeight="295.0" prefWidth="994.0" styleClass="pane" stylesheets="@../CSS/1.css">
+            <Pane layoutX="177.0" layoutY="305.0" prefHeight="295.0" prefWidth="994.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
                <children>
-                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Cart">
+                  <Label layoutX="15.0" prefHeight="40.0" prefWidth="166.0" text="Cart" textFill="#333333">
                      <font>
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <TableView id="tbl" fx:id="cartTbl" layoutX="14.0" layoutY="39.0" prefHeight="242.0" prefWidth="496.0">
+                  <TableView id="tbl" fx:id="cartTbl" layoutX="14.0" layoutY="39.0" prefHeight="242.0" prefWidth="477.0" stylesheets="@../CSS/1.css">
                      <columns>
                         <TableColumn id="colId" fx:id="colCartId" prefWidth="60.00000190734863" text="Item Id" />
                         <TableColumn id="colName" fx:id="colCartName" prefWidth="108.79998779296875" text="Name" />
@@ -83,162 +49,166 @@
                         <TableColumn id="colName" fx:id="colCartTotal" prefWidth="87.2000732421875" text="Total" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lblItemCount" layoutX="680.0" layoutY="40.0" prefHeight="40.0" prefWidth="300.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Item Count :-">
+                  <Label fx:id="lblItemCount" layoutX="684.0" layoutY="28.0" prefHeight="40.0" prefWidth="300.0" text="Item Count :-" textFill="#333333">
                      <font>
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDiscount" layoutX="680.0" layoutY="80.0" prefHeight="40.0" prefWidth="300.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Discount :-">
+                  <Label fx:id="lblSubTotal" layoutX="684.0" layoutY="85.0" prefHeight="40.0" prefWidth="300.0" text="Sub Total :-" textFill="#333333">
                      <font>
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSubTotal" layoutX="680.0" layoutY="120.0" prefHeight="40.0" prefWidth="300.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Sub Total :-">
+                  <Label layoutX="526.0" layoutY="160.0" text="Item Id" textFill="#333333">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="22.0" />
+                        <Font name="Lucida Sans Unicode" size="14.0" />
                      </font>
                   </Label>
-                  <JFXButton layoutX="799.0" layoutY="185.0" onAction="#btnPlaceOrderOnAction" prefHeight="36.0" prefWidth="181.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Place Order" textFill="WHITE">
+                  <Label layoutX="610.0" layoutY="160.0" text="Item Name" textFill="#333333">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="13.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton layoutX="526.0" layoutY="237.0" onAction="#btnDeleteCartItemOnAction" prefHeight="36.0" prefWidth="249.0" styleClass="delete-button" stylesheets="@../CSS/1.css" text="Delete Cart Item" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="13.0" />
-                     </font>
-                  </JFXButton>
-                  <TextField fx:id="viewItemId" editable="false" layoutX="526.0" layoutY="183.0" prefHeight="40.0" prefWidth="72.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="526.0" layoutY="160.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Item Id" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="viewItemName" editable="false" layoutX="610.0" layoutY="183.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="610.0" layoutY="160.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Item Name" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
+                        <Font name="Lucida Sans Unicode" size="14.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="cartViewImage" fitHeight="150.0" fitWidth="151.0" layoutX="519.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </Pane>
-            <Pane layoutX="417.0" layoutY="49.0" prefHeight="287.0" prefWidth="590.0" styleClass="pane" stylesheets="@../CSS/1.css">
-               <children>
-                  <Label fx:id="lblDateAndTime" layoutX="15.0" prefHeight="40.0" prefWidth="367.0" styleClass="label-title" stylesheets="@../CSS/1.css">
+                  <JFXTextField fx:id="viewItemId" editable="false" focusColor="#00bfff" layoutX="526.0" layoutY="171.0" prefHeight="40.0" prefWidth="74.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="22.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <Label layoutX="15.0" layoutY="40.0" prefHeight="40.0" prefWidth="81.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="OrderID">
+                  </JFXTextField>
+                  <JFXTextField fx:id="viewItemName" editable="false" focusColor="#00bfff" layoutX="608.0" layoutY="171.0" prefHeight="40.0" prefWidth="166.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
                      <font>
-                        <Font name="Lucida Sans Unicode" size="22.0" />
+                        <Font size="18.0" />
                      </font>
-                  </Label>
-                  <TextField fx:id="txtOrderId" editable="false" layoutX="96.0" layoutY="40.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                  </JFXTextField>
+                  <JFXButton layoutX="800.0" layoutY="167.0" onAction="#btnPlaceOrderOnAction" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Place Order" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="txtEmail" layoutX="14.0" layoutY="104.0" prefHeight="40.0" prefWidth="367.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="17.0" layoutY="85.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Customer Email" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtQty" layoutX="429.0" layoutY="171.0" prefHeight="40.0" prefWidth="65.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="390.0" layoutY="171.0" prefHeight="40.0" prefWidth="39.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="Qty">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="22.0" />
-                     </font>
-                  </Label>
-                  <JFXButton layoutX="416.0" layoutY="238.0" onAction="#btnAddToCartOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Add to Cart" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="13.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <TextField fx:id="txtItemId" editable="false" layoutX="17.0" layoutY="171.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                  <JFXButton layoutX="526.0" layoutY="221.0" onAction="#btnDeleteCartItemOnAction" prefHeight="30.0" prefWidth="249.0" style="-fx-background-color: #2979FF;" text="Delete Cart Item" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
-                  </TextField>
-                  <Label layoutX="17.0" layoutY="148.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Item Id" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtItemName" editable="false" layoutX="115.0" layoutY="171.0" prefHeight="40.0" prefWidth="266.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="115.0" layoutY="148.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Item Name" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtItemPrice" editable="false" layoutX="17.0" layoutY="234.0" prefHeight="40.0" prefWidth="110.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="17.0" layoutY="211.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Price" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtItemQty" editable="false" layoutX="144.0" layoutY="234.0" prefHeight="40.0" prefWidth="110.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="144.0" layoutY="211.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Quntity " textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtItemSize" editable="false" layoutX="271.0" layoutY="234.0" prefHeight="40.0" prefWidth="110.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="271.0" layoutY="211.0" styleClass="label-item" stylesheets="@../CSS/1.css" text="Size" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtDiscount" layoutX="503.0" layoutY="171.0" prefHeight="40.0" prefWidth="81.0" promptText="Discount" styleClass="text-area" stylesheets="@../CSS/1.css">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="193.0" layoutY="40.0" prefHeight="40.0" prefWidth="81.0" styleClass="label-title" stylesheets="@../CSS/1.css" text="EmpID">
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane layoutX="580.0" layoutY="10.0" prefHeight="287.0" prefWidth="590.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label fx:id="lblDateAndTime" layoutX="15.0" prefHeight="40.0" prefWidth="460.0" textFill="#333333">
                      <font>
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtEmpId" editable="false" layoutX="274.0" layoutY="40.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-area" stylesheets="@../CSS/1.css">
+                  <Label fx:id="lblOrderId" layoutX="15.0" layoutY="40.0" prefHeight="40.0" prefWidth="181.0" text="OrderID" textFill="#333333">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
-                  </TextField>
+                  </Label>
+                  <Label layoutX="17.0" layoutY="85.0" text="Customer Email" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="390.0" layoutY="171.0" prefHeight="40.0" prefWidth="39.0" text="Qty" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="17.0" layoutY="148.0" text="Item Id" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="148.0" text="Item Name" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="17.0" layoutY="211.0" text="Price" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="144.0" layoutY="211.0" text="Quntity " textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="271.0" layoutY="211.0" text="Size" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEmpId" layoutX="204.0" layoutY="40.0" prefHeight="40.0" prefWidth="181.0" text="EmpID" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
                   <ImageView fx:id="itemViewImage" fitHeight="156.0" fitWidth="200.0" layoutX="384.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                  <JFXTextField fx:id="txtEmail" focusColor="#00bfff" layoutX="18.0" layoutY="97.0" prefHeight="40.0" prefWidth="359.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtItemId" editable="false" focusColor="#00bfff" layoutX="15.0" layoutY="159.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtItemName" editable="false" focusColor="#00bfff" layoutX="115.0" layoutY="159.0" prefHeight="40.0" prefWidth="266.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtItemPrice" editable="false" focusColor="#00bfff" layoutX="16.0" layoutY="222.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtItemQty" editable="false" focusColor="#00bfff" layoutX="145.0" layoutY="222.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtItemSize" editable="false" focusColor="#00bfff" layoutX="272.0" layoutY="222.0" prefHeight="40.0" prefWidth="90.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtQty" focusColor="#00bfff" layoutX="429.0" layoutY="171.0" prefHeight="40.0" prefWidth="141.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton layoutX="404.0" layoutY="227.0" onAction="#btnAddToCartOnAction" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Add to Cart" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane layoutY="-33.0" prefHeight="667.0" prefWidth="170.0" style="-fx-background-color: #1A237E;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="6.0" layoutY="40.0" prefHeight="30.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="5.0" layoutY="92.0" onAction="#ItemPageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="5.0" layoutY="160.0" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Sales" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="5.0" layoutY="224.0" onAction="#OrderReportsPageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Order Reports" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </Pane>
          </children>

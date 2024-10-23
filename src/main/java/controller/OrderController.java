@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -86,22 +87,19 @@ public class OrderController implements Initializable {
     private Label lblDateAndTime;
 
     @FXML
-    private Label lblDiscount;
-
-    @FXML
     private Label lblItemCount;
 
     @FXML
     private Label lblSubTotal;
 
     @FXML
-    private TextField txtDiscount;
+    private Label lblOrderId;
+
+    @FXML
+    private Label lblEmpId;
 
     @FXML
     private TextField txtEmail;
-
-    @FXML
-    private TextField txtEmpId;
 
     @FXML
     private TextField txtItemId;
@@ -119,9 +117,6 @@ public class OrderController implements Initializable {
     private TextField txtItemSize;
 
     @FXML
-    private TextField txtOrderId;
-
-    @FXML
     private TextField txtQty;
 
     @FXML
@@ -135,6 +130,12 @@ public class OrderController implements Initializable {
 
     @FXML
     private ImageView cartViewImage;
+
+    public static String empId;
+
+    public static void setEmpId(String empId) {
+        OrderController.empId = empId;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -187,7 +188,8 @@ public class OrderController implements Initializable {
         }
 
         String id=String.format("O%03d",lastOrderCount+1);
-        txtOrderId.setText(id);
+        lblOrderId.setText("Order Id :- "+id);
+        lblEmpId.setText("Emp Id :- "+empId);
     }
 
     private void loadItemTable(){
@@ -206,7 +208,9 @@ public class OrderController implements Initializable {
         txtItemPrice.setText(String.valueOf(item.getPrice()));
         txtItemQty.setText(String.valueOf(item.getQty()));
         txtItemSize.setText(item.getSize());
-        itemViewImage.setImage(new Image(new ByteArrayInputStream(item.getImage())));
+        if (item.getImage()!=null){
+            itemViewImage.setImage(new Image(new ByteArrayInputStream(item.getImage())));
+        }
     }
 
     @FXML
@@ -298,10 +302,10 @@ public class OrderController implements Initializable {
             List<OrderDetails> orderDetailsList=new ArrayList<>();
 
             cartTMObservableList.forEach(obj->{
-                orderDetailsList.add(new OrderDetails(txtOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice(),obj.getSize(),obj.getTotal(),obj.getImage()));
+                orderDetailsList.add(new OrderDetails(lblOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice(),obj.getSize(),obj.getTotal(),obj.getImage()));
             });
 
-            Order order = new Order(txtOrderId.getText(), LocalDateTime.now(), txtEmpId.getText(),txtEmail.getText(), orderDetailsList);
+            Order order = new Order(lblOrderId.getText(), LocalDateTime.now(), lblEmpId.getText(),txtEmail.getText(), orderDetailsList);
             orderService.placeOrder(order);
 
             cartTMObservableList.clear();
@@ -336,7 +340,9 @@ public class OrderController implements Initializable {
     private void setDeleteBtn(CartTM cartItem) {
         viewItemId.setText(cartItem.getItemId());
         viewItemName.setText(cartItem.getName());
-        cartViewImage.setImage(new Image(new ByteArrayInputStream(cartItem.getImage())));
+        if (cartItem.getImage()!=null){
+            cartViewImage.setImage(new Image(new ByteArrayInputStream(cartItem.getImage())));
+        }
     }
 
     @FXML
@@ -365,24 +371,6 @@ public class OrderController implements Initializable {
     }
 
     @FXML
-    void EmployeePageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
-            stage.setResizable(false);
-            stage.setOnCloseRequest(closeEvent -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.CANCEL) {
-                    closeEvent.consume();
-                }
-            });
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
     void ItemPageOnAction(ActionEvent event) {
         Stage stage=new Stage();
         try {
@@ -395,6 +383,8 @@ public class OrderController implements Initializable {
                 }
             });
             stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -413,6 +403,8 @@ public class OrderController implements Initializable {
                 }
             });
             stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

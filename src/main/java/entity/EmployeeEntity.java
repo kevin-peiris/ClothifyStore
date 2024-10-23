@@ -17,7 +17,6 @@ public class EmployeeEntity {
     private String empId;
     private String name;
     private String email;
-    private String password;
     private Integer orderCount;
 
     @Lob

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,43 +16,48 @@
             <Image url="@../image/Screenshot%202024-10-17%20105957.png" />
          </image>
       </ImageView>
-      <Pane layoutX="332.0" layoutY="11.0" prefHeight="382.0" prefWidth="340.0" style="-fx-background-color: #314C80;">
+      <Pane layoutX="332.0" layoutY="11.0" prefHeight="378.0" prefWidth="340.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="121.0" layoutY="14.0" prefHeight="58.0" prefWidth="99.0" text="Login" textFill="WHITE">
+            <Label layoutX="121.0" layoutY="14.0" prefHeight="58.0" prefWidth="99.0" text="Login" textFill="#333333">
                <font>
                   <Font name="Lucida Sans Unicode" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="129.0" prefHeight="40.0" prefWidth="64.0" text="Email" textFill="WHITE">
+            <Label layoutX="43.0" layoutY="129.0" prefHeight="40.0" prefWidth="64.0" text="Email" textFill="#333333">
                <font>
                   <Font name="Lucida Sans Unicode" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="198.0" prefHeight="40.0" prefWidth="112.0" text="Password" textFill="WHITE">
+            <Label layoutX="19.0" layoutY="198.0" prefHeight="40.0" prefWidth="112.0" text="Password" textFill="#333333">
                <font>
                   <Font name="Lucida Sans Unicode" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmail" layoutX="93.0" layoutY="129.0" prefHeight="40.0" prefWidth="228.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="txtPassword" layoutX="140.0" layoutY="199.0" prefHeight="40.0" prefWidth="186.0" styleClass="text-area" stylesheets="@../CSS/1.css">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <JFXButton layoutX="108.0" layoutY="279.0" onAction="#btnLoginOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Login" textFill="WHITE">
+            <Label layoutX="220.0" layoutY="248.0" onMouseClicked="#btnPWForgotPageOnAction" prefHeight="25.0" prefWidth="112.0" text="Forgot Password" textFill="#333333" underline="true">
                <font>
                   <Font name="Lucida Sans Unicode" size="13.0" />
                </font>
+            </Label>
+            <JFXTextField fx:id="txtEmail" focusColor="DEEPSKYBLUE" layoutX="145.0" layoutY="123.0" prefHeight="30.0" prefWidth="186.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtPassword" focusColor="DEEPSKYBLUE" layoutX="145.0" layoutY="191.0" prefHeight="30.0" prefWidth="186.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="110.0" layoutY="281.0" onAction="#btnLoginOnAction" prefHeight="40.0" prefWidth="134.0" style="-fx-background-color: #2979ff;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
             </JFXButton>
-            <JFXButton layoutX="108.0" layoutY="332.0" onAction="#btnRegisterOnAction" prefHeight="36.0" prefWidth="136.0" styleClass="add-button" stylesheets="@../CSS/1.css" text="Register" textFill="WHITE">
+            <Label layoutX="222.0" layoutY="343.0" onMouseClicked="#btnRegisterOnAction" prefHeight="25.0" prefWidth="118.0" text="Register as Admin" textFill="#333333" underline="true">
                <font>
                   <Font name="Lucida Sans Unicode" size="13.0" />
                </font>
-            </JFXButton>
+            </Label>
          </children>
       </Pane>
    </children>

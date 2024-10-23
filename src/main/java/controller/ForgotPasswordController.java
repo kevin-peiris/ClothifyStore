@@ -1,36 +1,28 @@
 package controller;
 
-import dto.Admin;
+import com.jfoenix.controls.JFXButton;
 import dto.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.ServiceFactory;
-import service.custom.AdminService;
 import service.custom.UserService;
-import util.RoleType;
 import util.ServiceType;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class RegisterController implements Initializable {
-    AdminService adminService= ServiceFactory.getInstance().getServiceType(ServiceType.ADMIN);
+public class ForgotPasswordController {
+    UserService userService= ServiceFactory.getInstance().getServiceType(ServiceType.USER);
 
     @FXML
     private TextField txtEmail;
@@ -42,68 +34,65 @@ public class RegisterController implements Initializable {
     private TextField txtPassword;
 
     @FXML
-    private ComboBox<String> roleList;
+    private JFXButton btnLogin;
 
     private String generatedOTP;
 
     @FXML
-    void btnRegisterOnAction(ActionEvent event) {
-        String email = txtEmail.getText();
-        String enteredOTP = txtOTP.getText();
-        String password = txtPassword.getText();
-
-        if (email.isEmpty() || enteredOTP.isEmpty() || password.isEmpty()) {
+    void btnLoginOnAction(ActionEvent event) {
+        if (txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Empty Field or Fields");
             alert.show();
-            return;
-        }else if (!enteredOTP.equals(generatedOTP)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid OTP. Please try again.");
-            alert.show();
-            return;
         }else if(!isValidEmail(txtEmail.getText())) {
             Alert alert=new Alert(Alert.AlertType.WARNING,"Invalid Email!");
             alert.show();
             txtEmail.selectAll();
-        } else if(!isValidPassword(txtPassword.getText())) {
-            Alert alert=new Alert(Alert.AlertType.WARNING,"Invalid Password!");
-            alert.show();
-            txtPassword.selectAll();
+        }else {
+
+            User user = userService.getUserByEmail(txtEmail.getText());
+
+            if (user != null) {
+                if(!isValidPassword(txtPassword.getText())) {
+                    Alert alert=new Alert(Alert.AlertType.WARNING,"Invalid Password!");
+                    alert.show();
+                    txtPassword.selectAll();
+                }else {
+                    user.setPassword(txtPassword.getText());
+                    userService.updateUser(user);
+
+                    Stage stage = new Stage();
+                    try {
+                        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+                        stage.setResizable(false);
+                        stage.setOnCloseRequest(closeEvent -> {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                            if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                                closeEvent.consume();
+                            }
+                        });
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Email or Password");
+                alert.show();
+            }
         }
-
-        adminService.registerUser(new Admin(txtEmail.getText(),txtPassword.getText(),roleList.getSelectionModel().getSelectedItem()));
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Registration successful!");
-
-        Stage stage=new Stage();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
-            stage.setResizable(false);
-            stage.show();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        alert.show();
-
-        txtEmail.clear();
-        txtOTP.clear();
-        txtPassword.clear();
-        roleList.setValue("");
     }
 
     @FXML
     void btnSendOTPOnAction(ActionEvent event) {
         String email = txtEmail.getText();
 
-        Admin admin = adminService.getAdminByEmail(email);
+        User user = userService.getUserByEmail(email);
 
-        if (email.isEmpty() || !isValidEmail(txtEmail.getText()) || admin==null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Invalid Email!");
+        if (email.isEmpty() || !isValidEmail(txtEmail.getText()) || user==null) {
+            Alert alert=new Alert(Alert.AlertType.WARNING,"Invalid Email!");
             alert.show();
             txtEmail.selectAll();
-        }else{
+        }else {
             generatedOTP = generateOTP();
 
             try {
@@ -115,6 +104,7 @@ public class RegisterController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to send OTP. Please try again.");
                 alert.show();
             }
+            txtEmail.setEditable(false);
         }
     }
 
@@ -159,12 +149,17 @@ public class RegisterController implements Initializable {
         Transport.send(message);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> roles= FXCollections.observableArrayList();
-        roles.add("Owner");
-        roles.add("Manager");
+    @FXML
+    void btnVerifyOTPOnAction(ActionEvent event) {
+        String enteredOTP = txtOTP.getText();
 
-        roleList.setItems(roles);
+        if (!enteredOTP.equals(generatedOTP)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid OTP. Please try again.");
+            alert.show();
+        }else {
+            txtOTP.setEditable(false);
+            btnLogin.setDisable(false);
+        }
     }
+
 }

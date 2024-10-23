@@ -71,7 +71,6 @@ public class EmployeeReportsController implements Initializable {
         viewId.setText(employee.getEmpId());
         viewName.setText(employee.getName());
         viewEmail.setText(employee.getEmail());
-        viewPassword.setText(employee.getPassword());
         if (employee.getImage()!=null){
             editImageView.setImage(new Image(new ByteArrayInputStream(employee.getImage())));
         }

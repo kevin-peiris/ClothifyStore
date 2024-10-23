@@ -34,4 +34,33 @@ public class UserServiceImpl implements UserService {
             return new ModelMapper().map(entity, User.class);
         }
     }
+
+    @Override
+    public User getUserByEmail(String emailAddress) {
+        UserDao userDao = DaoFactory.getInstance().getDaoType(DaoType.USER);
+        UserEntity entity = userDao.getUserByEmail(emailAddress);
+        if (entity == null) {
+            return null;
+        }else {
+            return new ModelMapper().map(entity, User.class);
+        }
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedPassword);
+        UserEntity entity = new ModelMapper().map(user, UserEntity.class);
+        UserDao userDao = DaoFactory.getInstance().getDaoType(DaoType.USER);
+        userDao.update(entity);
+        return true;
+    }
+
+    @Override
+    public boolean deleteUser(User user) {
+        UserEntity entity = new ModelMapper().map(user, UserEntity.class);
+        UserDao userDao = DaoFactory.getInstance().getDaoType(DaoType.USER);
+        userDao.delete(entity);
+        return true;
+    }
 }

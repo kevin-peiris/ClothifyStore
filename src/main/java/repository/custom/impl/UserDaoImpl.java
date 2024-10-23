@@ -21,8 +21,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(UserEntity userEntity) {
-        return false;
+    public boolean delete(UserEntity user) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        session.remove(user);
+        session.getTransaction().commit();
+        session.close();
+
+        return true;
     }
 
     @Override
@@ -31,8 +37,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean update(UserEntity userEntity) {
-        return false;
+    public boolean update(UserEntity user) {
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+
+        return true;
     }
 
     @Override

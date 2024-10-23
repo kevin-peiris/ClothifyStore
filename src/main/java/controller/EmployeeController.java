@@ -120,9 +120,9 @@ public class EmployeeController implements Initializable {
             txtPassword.selectAll();
         }else{
 
-            Employee employee = new Employee(txtId.getText(), txtName.getText(), txtEmail.getText(), txtPassword.getText(),0,inpImageByte);
+            Employee employee = new Employee(txtId.getText(), txtName.getText(), txtEmail.getText(),0,inpImageByte);
 
-            userService.registerUser(new User(employee.getEmpId(),employee.getEmail(),employee.getPassword(), "Employee"));
+            userService.registerUser(new User(employee.getEmpId(),employee.getEmail(), txtPassword.getText(), "Employee"));
 
             System.out.println(employee);
 
@@ -171,7 +171,6 @@ public class EmployeeController implements Initializable {
         viewId.setText(employee.getEmpId());
         viewName.setText(employee.getName());
         viewEmail.setText(employee.getEmail());
-        viewPassword.setText(employee.getPassword());
         if (employee.getImage()!=null){
             editImageView.setImage(new Image(new ByteArrayInputStream(employee.getImage())));
         }
@@ -206,6 +205,8 @@ public class EmployeeController implements Initializable {
     @FXML
     void btnDeleteEmpOnAction(ActionEvent event) {
         Employee selectedEmployee = tbl.getSelectionModel().getSelectedItem();
+        User user = userService.getUserByEmail(selectedEmployee.getEmail());
+        userService.deleteUser(user);
 
         if (selectedEmployee == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an employee to delete.");
@@ -276,9 +277,9 @@ public class EmployeeController implements Initializable {
             Employee employee =null;
 
             if (editImageByte==null){
-                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText(),selectedEmployee.getOrderCount(),selectedEmployee.getImage());
+                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(),selectedEmployee.getOrderCount(),selectedEmployee.getImage());
             }else{
-                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(), viewPassword.getText(),selectedEmployee.getOrderCount(),editImageByte);
+                employee = new Employee(viewId.getText(), viewName.getText(), viewEmail.getText(),selectedEmployee.getOrderCount(),editImageByte);
             }
 
             System.out.println(employee);
