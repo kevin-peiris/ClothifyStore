@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import dto.Admin;
 import dto.User;
 import javafx.collections.FXCollections;
@@ -39,7 +40,7 @@ public class RegisterController implements Initializable {
     private TextField txtOTP;
 
     @FXML
-    private TextField txtPassword;
+    private JFXPasswordField txtPassword;
 
     @FXML
     private ComboBox<String> roleList;

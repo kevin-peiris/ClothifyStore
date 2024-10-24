@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import dto.User;
 import javafx.event.ActionEvent;
@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.EmployeeService;
 import service.custom.UserService;
-import util.RoleType;
 import util.ServiceType;
 
 import java.io.ByteArrayInputStream;

@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import dto.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +32,7 @@ public class ForgotPasswordController {
     private TextField txtOTP;
 
     @FXML
-    private TextField txtPassword;
+    private JFXPasswordField txtPassword;
 
     @FXML
     private JFXButton btnLogin;

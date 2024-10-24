@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.AdminMainController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.AdminMainController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="519.0" prefWidth="965.0" style="-fx-background-color: #F5F5F5;" stylesheets="">
+         <children>
+            <Pane layoutX="207.0" layoutY="41.0" prefHeight="127.0" prefWidth="219.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="21.0" layoutY="-4.0" prefHeight="40.0" prefWidth="185.0" text="Employee Count" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="34.0" layoutY="36.0">
+                     <image>
+                        <Image url="@../image/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblEmpCount" layoutX="131.0" layoutY="44.0" prefHeight="40.0" prefWidth="74.0" textFill="#2979ff">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="-15.0" prefHeight="573.0" prefWidth="170.0" style="-fx-background-color: #1A237E;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="6.0" layoutY="21.0" prefHeight="40.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="6.0" layoutY="173.0" onAction="#ItemPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="6.0" layoutY="225.0" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Sales" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="6.0" layoutY="282.0" onAction="#OrderPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="6.0" layoutY="69.0" onAction="#AdminMainPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Admin Main" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="6.0" layoutY="122.0" onAction="#EmployeePageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Employee" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane layoutX="455.0" layoutY="41.0" prefHeight="127.0" prefWidth="219.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="47.0" layoutY="-4.0" prefHeight="40.0" prefWidth="127.0" text="Item Count" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblItemCount" layoutX="131.0" layoutY="44.0" prefHeight="40.0" prefWidth="74.0" textFill="#2979ff">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="30.0" layoutY="36.0">
+                     <image>
+                        <Image url="@../image/clothes-hanger.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="703.0" layoutY="41.0" prefHeight="127.0" prefWidth="219.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
+               <children>
+                  <Label layoutX="46.0" layoutY="-4.0" prefHeight="40.0" prefWidth="139.0" text="Order Count" textFill="#333333">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOrderCount" layoutX="131.0" layoutY="44.0" prefHeight="40.0" prefWidth="74.0" textFill="#2979ff">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="35.0" layoutY="36.0">
+                     <image>
+                        <Image url="@../image/order.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

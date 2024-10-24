@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import dto.Admin;
 import dto.User;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ public class LoginController {
     private TextField txtEmail;
 
     @FXML
-    private TextField txtPassword;
+    private JFXPasswordField txtPassword;
 
 
     public void btnRegisterOnAction(javafx.scene.input.MouseEvent mouseEvent) {
@@ -64,9 +65,13 @@ public class LoginController {
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
                     stage.setResizable(false);
                     stage.setOnCloseRequest(closeEvent -> {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
-                        if (alert.showAndWait().get() == ButtonType.CANCEL) {
-                            closeEvent.consume();
+                        Stage adminStage = new Stage();
+                        try {
+                            adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
+                            adminStage.setResizable(false);
+                            adminStage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
                     });
                     stage.show();
@@ -78,8 +83,18 @@ public class LoginController {
             } else if (admin!=null){
                 Stage stage = new Stage();
                 try {
-                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin_main.fxml"))));
                     stage.setResizable(false);
+                    stage.setOnCloseRequest(closeEvent -> {
+                        Stage adminStage = new Stage();
+                        try {
+                            adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
+                            adminStage.setResizable(false);
+                            adminStage.show();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                     stage.show();
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     currentStage.close();
