@@ -1,49 +1,39 @@
-/* Applying rounded corners to the pane */
 .pane {
-    -fx-background-color:  #FFFFFF; /* Light neutral background */
-    -fx-border-color: #2979FF;  /* Set border color */
-    -fx-border-width: 2px; /* Set border width */
-
-    -fx-border-radius: 20px; /* Rounded border */
-    -fx-background-radius: 20px; /* Rounded background to match the border */
-
-    -fx-padding: 10px; /* Optional: padding inside the pane */
+    -fx-background-color:  #FFFFFF;
+    -fx-border-color: #2979FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #2979FF;  /* Light Gray background */
+    -fx-background-color: #2979FF;
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #333333;  /* Dark Gray text */
-    -fx-font-weight: bold;   /* Optional: Make the text bold */
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
 }
 
 .table-view .column-header {
-    -fx-border-color: transparent transparent #2979FF transparent; /* Dark Gray bottom border */
-    -fx-border-width: 0 0 2px 0;  /* Optional: 2px bottom border */
+    -fx-border-color: transparent transparent #2979FF transparent;
+    -fx-border-width: 0 0 2px 0;
 }
 
-
-
-/* Text Areas (Input Fields) */
 .text-field {
-    -fx-text-fill: #333333; /* Bootstrap dark text */
+    -fx-text-fill: #333333;
 }
 
-/* Buttons */
 .add-button {
-    -fx-background-color: #007bff; /* Teal button */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
-    -fx-border-radius: 5px; /* Soft rounded button */
+    -fx-border-radius: 5px;
 }
 
-/* ComboBox Styling */
 .combo-box {
-    -fx-text-fill: white; /* Dark gray text */
+    -fx-text-fill: white;
     -fx-font-size: 18px;
 }
-
-

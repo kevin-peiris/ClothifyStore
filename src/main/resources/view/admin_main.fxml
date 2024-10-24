@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.AdminMainController">
    <children>
       <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="519.0" prefWidth="965.0" style="-fx-background-color: #F5F5F5;" stylesheets="">
@@ -39,7 +38,7 @@
                         <Font name="Lucida Sans Unicode" size="24.0" />
                      </font>
                   </Label>
-                  <JFXButton layoutX="6.0" layoutY="173.0" onAction="#ItemPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="175.0" onAction="#ItemPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
@@ -49,17 +48,17 @@
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="6.0" layoutY="282.0" onAction="#OrderPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="275.0" onAction="#OrderPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="6.0" layoutY="69.0" onAction="#AdminMainPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Admin Main" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="75.0" onAction="#AdminMainPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Admin Main" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="6.0" layoutY="122.0" onAction="#EmployeePageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Employee" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="125.0" onAction="#EmployeePageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Employee" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>

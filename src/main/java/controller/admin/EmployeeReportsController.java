@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import dto.Employee;
 import javafx.collections.ObservableList;
