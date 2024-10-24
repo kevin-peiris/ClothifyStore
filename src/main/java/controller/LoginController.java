@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXPasswordField;
+import controller.employee.EmployeeMainController;
 import dto.Admin;
 import dto.User;
 import javafx.event.ActionEvent;
@@ -58,11 +59,11 @@ public class LoginController {
             User user = userService.loginUser(txtEmail.getText(), txtPassword.getText());
             Admin admin = adminService.loginAdmin(txtEmail.getText(), txtPassword.getText());
             if (user != null) {
-                OrderController orderController = new OrderController();
-                orderController.setEmpId(user.getEmpId());
+                EmployeeMainController.setEmpId(user.getEmpId());
+
                 Stage stage = new Stage();
                 try {
-                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
                     stage.setResizable(false);
                     stage.setOnCloseRequest(closeEvent -> {
                         Stage adminStage = new Stage();

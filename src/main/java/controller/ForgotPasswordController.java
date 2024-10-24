@@ -59,7 +59,7 @@ public class ForgotPasswordController {
                     txtPassword.selectAll();
                 }else {
                     user.setPassword(txtPassword.getText());
-                    userService.updateUser(user);
+                    userService.updateUserPassword(user);
 
                     Stage stage = new Stage();
                     try {

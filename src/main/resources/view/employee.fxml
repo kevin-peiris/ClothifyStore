@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -52,17 +53,12 @@
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtPassword" focusColor="DEEPSKYBLUE" layoutX="359.0" layoutY="122.0" prefHeight="40.0" prefWidth="140.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
                   <JFXTextField fx:id="txtEmail" focusColor="DEEPSKYBLUE" layoutX="199.0" layoutY="122.0" prefHeight="40.0" prefWidth="140.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton layoutX="22.0" layoutY="193.0" onAction="#btnAddItemImageOnAction" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #2979FF;" text="Add Image" textFill="WHITE">
+                  <JFXButton layoutX="22.0" layoutY="193.0" onAction="#btnAddEmpImageOnAction" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #2979FF;" text="Add Image" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -72,6 +68,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
+                  <JFXPasswordField fx:id="txtPassword" focusColor="DEEPSKYBLUE" layoutX="358.0" layoutY="122.0" prefHeight="40.0" prefWidth="140.0" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXPasswordField>
                </children>
             </Pane>
             <Pane layoutX="179.0" layoutY="12.0" prefHeight="496.0" prefWidth="365.0" style="-fx-background-color: #FFFFFF;" styleClass="pane" stylesheets="@../CSS/1.css">
@@ -128,17 +129,12 @@
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="viewPassword" focusColor="DEEPSKYBLUE" layoutX="356.0" layoutY="119.0" prefHeight="40.0" prefWidth="140.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
                   <JFXTextField fx:id="viewEmail" focusColor="DEEPSKYBLUE" layoutX="198.0" layoutY="119.0" prefHeight="40.0" prefWidth="140.0" styleClass="text-field" stylesheets="@../CSS/1.css" unFocusColor="#2979ff">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton layoutX="24.0" layoutY="193.0" onAction="#btnUpdateItemImageOnAction" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #2979FF;" text="Update Image" textFill="WHITE">
+                  <JFXButton layoutX="24.0" layoutY="193.0" onAction="#btnUpdateEmpImageOnAction" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #2979FF;" text="Update Image" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -153,6 +149,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
+                  <JFXPasswordField fx:id="viewPassword" focusColor="DEEPSKYBLUE" layoutX="357.0" layoutY="118.0" prefHeight="40.0" prefWidth="140.0" unFocusColor="#2979ff">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXPasswordField>
                </children>
             </Pane>
             <Pane layoutY="-15.0" prefHeight="573.0" prefWidth="170.0" style="-fx-background-color: #1A237E;" styleClass="pane" stylesheets="@../CSS/1.css">

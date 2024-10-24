@@ -1,9 +1,6 @@
-package controller;
+package controller.employee;
 
-import dto.CartTM;
-import dto.Item;
-import dto.Order;
-import dto.OrderDetails;
+import dto.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import service.ServiceFactory;
+import service.custom.EmployeeService;
 import service.custom.ItemService;
 import service.custom.OrderService;
 import util.ServiceType;
@@ -32,15 +30,13 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class OrderController implements Initializable {
     OrderService orderService= ServiceFactory.getInstance().getServiceType(ServiceType.ORDER);
     ItemService itemService= ServiceFactory.getInstance().getServiceType(ServiceType.ITEM);
+    static EmployeeService employeeService= ServiceFactory.getInstance().getServiceType(ServiceType.EMPLOYEE);
 
     private ObservableList<CartTM> cartTMObservableList= FXCollections.observableArrayList();
 
@@ -131,10 +127,14 @@ public class OrderController implements Initializable {
     @FXML
     private ImageView cartViewImage;
 
-    public static String empId;
+    public static Employee loginEmployee;
 
     public static void setEmpId(String empId) {
-        OrderController.empId = empId;
+        for (Employee employee : employeeService.getAll()) {
+            if (Objects.equals(employee.getEmpId(), empId)){
+                loginEmployee=employee;
+            }
+        }
     }
 
     @Override
@@ -189,7 +189,7 @@ public class OrderController implements Initializable {
 
         String id=String.format("O%03d",lastOrderCount+1);
         lblOrderId.setText("Order Id :- "+id);
-        lblEmpId.setText("Emp Id :- "+empId);
+        lblEmpId.setText("Emp Id :- "+loginEmployee.getEmpId());
     }
 
     private void loadItemTable(){
@@ -371,10 +371,12 @@ public class OrderController implements Initializable {
     }
 
     @FXML
-    void ItemPageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
+    void EmployeeMainPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
+            EmployeeMainController.setEmpId(loginEmployee.getEmpId());
+
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
             stage.setResizable(false);
             stage.setOnCloseRequest(closeEvent -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
@@ -391,14 +393,56 @@ public class OrderController implements Initializable {
     }
 
     @FXML
-    void OrderReportsPageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
+    void ItemPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order_reports.fxml"))));
+            ItemController.setEmpId(loginEmployee.getEmpId());
+
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
             stage.setResizable(false);
             stage.setOnCloseRequest(closeEvent -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    closeEvent.consume();
+                }
+            });
+            stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void OrderPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+        try {
+            OrderController.setEmpId(loginEmployee.getEmpId());
+
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
                     closeEvent.consume();
                 }
             });

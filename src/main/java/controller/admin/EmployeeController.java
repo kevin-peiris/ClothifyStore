@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class EmployeeController implements Initializable {
-    EmployeeService service= ServiceFactory.getInstance().getServiceType(ServiceType.EMPLOYEE);
+    EmployeeService employeeService= ServiceFactory.getInstance().getServiceType(ServiceType.EMPLOYEE);
     UserService userService= ServiceFactory.getInstance().getServiceType(ServiceType.USER);
 
     @FXML
@@ -81,7 +81,7 @@ public class EmployeeController implements Initializable {
     private byte[] editImageByte=null;
 
     @FXML
-    void btnAddItemImageOnAction(ActionEvent event) {
+    void btnAddEmpImageOnAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
 
@@ -125,7 +125,7 @@ public class EmployeeController implements Initializable {
 
             System.out.println(employee);
 
-            if (service.addEmployee(employee)) {
+            if (employeeService.addEmployee(employee)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Employee Added Successfully");
                 alert.show();
             }
@@ -178,7 +178,7 @@ public class EmployeeController implements Initializable {
     private void generateEmpId(){
         int lastEmpCount=0;
 
-        ObservableList<Employee> employeeList = service.getAll();
+        ObservableList<Employee> employeeList = employeeService.getAll();
         if (!employeeList.isEmpty()) {
             Employee lastEmployee = employeeList.getLast();
 
@@ -198,7 +198,7 @@ public class EmployeeController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        tbl.setItems(service.getAll());
+        tbl.setItems(employeeService.getAll());
     }
 
     @FXML
@@ -213,7 +213,7 @@ public class EmployeeController implements Initializable {
             return;
         }
 
-        if (service.deleteEmployee(selectedEmployee)) {
+        if (employeeService.deleteEmployee(selectedEmployee)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Employee Deleted Successfully");
             alert.show();
         }
@@ -228,7 +228,7 @@ public class EmployeeController implements Initializable {
     }
 
     @FXML
-    void btnUpdateItemImageOnAction(ActionEvent event) {
+    void btnUpdateEmpImageOnAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Edit Image File");
 
@@ -283,7 +283,7 @@ public class EmployeeController implements Initializable {
 
             System.out.println(employee);
 
-            if (service.updateEmployee(employee)) {
+            if (employeeService.updateEmployee(employee)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Employee Updated Successfully");
                 alert.show();
             }

@@ -1,6 +1,5 @@
-package controller;
+package controller.employee;
 
-import dto.CartTM;
 import dto.Employee;
 import dto.Item;
 import dto.Supplier;
@@ -19,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.ServiceFactory;
+import service.custom.EmployeeService;
 import service.custom.ItemService;
 import service.custom.SupplierService;
 import util.ServiceType;
@@ -28,12 +28,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class ItemController implements Initializable {
     SupplierService supplierService= ServiceFactory.getInstance().getServiceType(ServiceType.SUPPLIER);
     ItemService itemService= ServiceFactory.getInstance().getServiceType(ServiceType.ITEM);
+    static EmployeeService employeeService= ServiceFactory.getInstance().getServiceType(ServiceType.EMPLOYEE);
 
     @FXML
     private TableColumn<?, ?> colItemId;
@@ -127,6 +129,16 @@ public class ItemController implements Initializable {
 
     private byte[] inpImageByte=null;
     private byte[] editImageByte=null;
+
+    public static Employee loginEmployee;
+
+    public static void setEmpId(String empId) {
+        for (Employee employee : employeeService.getAll()) {
+            if (Objects.equals(employee.getEmpId(), empId)){
+                loginEmployee=employee;
+            }
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -495,10 +507,12 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void EmployeePageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
+    void EmployeeMainPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee.fxml"))));
+            EmployeeMainController.setEmpId(loginEmployee.getEmpId());
+
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
             stage.setResizable(false);
             stage.setOnCloseRequest(closeEvent -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
@@ -507,6 +521,8 @@ public class ItemController implements Initializable {
                 }
             });
             stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -514,17 +530,30 @@ public class ItemController implements Initializable {
 
     @FXML
     void ItemPageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
+        Stage stage = new Stage();
         try {
+            ItemController.setEmpId(loginEmployee.getEmpId());
+
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/item.fxml"))));
             stage.setResizable(false);
             stage.setOnCloseRequest(closeEvent -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
                     closeEvent.consume();
                 }
             });
             stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -532,17 +561,30 @@ public class ItemController implements Initializable {
 
     @FXML
     void OrderPageOnAction(ActionEvent event) {
-        Stage stage=new Stage();
+        Stage stage = new Stage();
         try {
+            OrderController.setEmpId(loginEmployee.getEmpId());
+
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order.fxml"))));
             stage.setResizable(false);
             stage.setOnCloseRequest(closeEvent -> {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
-                if (alert.showAndWait().get() == ButtonType.CANCEL) {
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
                     closeEvent.consume();
                 }
             });
             stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

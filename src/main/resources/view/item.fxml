@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ItemController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.employee.ItemController">
    <children>
       <Pane layoutY="-11.0" prefHeight="736.0" prefWidth="1138.0" style="-fx-background-color: #F5F5F5;" stylesheets="">
          <children>
@@ -289,29 +289,29 @@
                   </JFXButton>
                </children>
             </Pane>
-            <Pane layoutY="-7.0" prefHeight="767.0" prefWidth="170.0" style="-fx-background-color: #1A237E;" styleClass="pane" stylesheets="@../CSS/1.css">
+            <Pane layoutY="-7.0" prefHeight="775.0" prefWidth="170.0" style="-fx-background-color: #1A237E;" styleClass="pane" stylesheets="@../CSS/1.css">
                <children>
-                  <Label layoutX="5.0" layoutY="29.0" prefHeight="40.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
+                  <Label layoutX="6.0" layoutY="21.0" prefHeight="40.0" prefWidth="159.0" text="Clothify Store" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="24.0" />
                      </font>
                   </Label>
-                  <JFXButton layoutX="5.0" layoutY="87.0" onAction="#EmployeePageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Employee" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="124.0" onAction="#ItemPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="5.0" layoutY="136.0" onAction="#ItemPageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Item" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="174.0" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Sales" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="5.0" layoutY="184.0" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Sales" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="224.0" onAction="#OrderPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="5.0" layoutY="235.0" onAction="#OrderPageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
+                  <JFXButton layoutX="6.0" layoutY="75.0" onAction="#EmployeeMainPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Employee Main" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
