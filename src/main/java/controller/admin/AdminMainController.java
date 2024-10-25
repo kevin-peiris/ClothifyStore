@@ -3,6 +3,7 @@ package controller.admin;
 import dto.Employee;
 import dto.Item;
 import dto.Order;
+import dto.Supplier;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -31,6 +35,9 @@ public class AdminMainController implements Initializable {
     ItemService itemService= ServiceFactory.getInstance().getServiceType(ServiceType.ITEM);
 
     @FXML
+    private BarChart<String, Number> EmpBarChart;
+
+    @FXML
     private Label lblEmpCount;
 
     @FXML
@@ -38,6 +45,27 @@ public class AdminMainController implements Initializable {
 
     @FXML
     private Label lblOrderCount;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<Employee> employees = employeeService.getAll();
+        ObservableList<Item> items = itemService.getAll();
+        ObservableList<Order> orders = orderService.getAll();
+
+        lblEmpCount.setText(String.valueOf(employees.size()));
+        lblItemCount.setText(String.valueOf(items.size()));
+        lblOrderCount.setText(String.valueOf(orders.size()));
+
+        XYChart.Series<String, Number> empSeries = new XYChart.Series<>();
+        empSeries.setName("Employee Sales Performance");
+
+        for (Employee employee : employees) {
+            int orderCount = employee.getOrderCount();
+            empSeries.getData().add(new XYChart.Data<>(employee.getName(), orderCount));
+        }
+
+        EmpBarChart.getData().add(empSeries);
+    }
 
     @FXML
     void AdminMainPageOnAction(ActionEvent event) {
@@ -120,16 +148,5 @@ public class AdminMainController implements Initializable {
     @FXML
     void OrderPageOnAction(ActionEvent event) {
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<Employee> employees = employeeService.getAll();
-        ObservableList<Item> items = itemService.getAll();
-        ObservableList<Order> orders = orderService.getAll();
-
-        lblEmpCount.setText(String.valueOf(employees.size()));
-        lblItemCount.setText(String.valueOf(items.size()));
-        lblOrderCount.setText(String.valueOf(orders.size()));
     }
 }

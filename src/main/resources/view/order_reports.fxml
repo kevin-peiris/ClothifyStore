@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderReportsController">
    <children>
       <Pane prefHeight="651.0" prefWidth="1018.0" style="-fx-background-color: #f1f3f5;" stylesheets="">
@@ -74,7 +73,7 @@
                         <Font name="Lucida Sans Unicode" size="22.0" />
                      </font>
                   </Label>
-                  <TableView id="tbl" fx:id="cartTbl" layoutX="14.0" layoutY="39.0" prefHeight="242.0" prefWidth="496.0">
+                  <TableView id="tbl" fx:id="cartTbl" layoutX="14.0" layoutY="39.0" prefHeight="242.0" prefWidth="478.0">
                      <columns>
                         <TableColumn id="colId" fx:id="colCartId" prefWidth="60.00000190734863" text="Item Id" />
                         <TableColumn id="colName" fx:id="colCartName" prefWidth="108.79998779296875" text="Name" />

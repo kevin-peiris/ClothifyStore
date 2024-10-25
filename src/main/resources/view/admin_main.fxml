@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -103,6 +106,14 @@
                   </ImageView>
                </children>
             </Pane>
+            <BarChart fx:id="EmpBarChart" layoutX="197.0" layoutY="175.0" prefHeight="330.0" prefWidth="736.0" style="-fx-alternative-column-fill-visible: #2979FF;">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
          </children>
       </Pane>
    </children>

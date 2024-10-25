@@ -306,6 +306,9 @@ public class OrderController implements Initializable {
             });
 
             Order order = new Order(lblOrderId.getText(), LocalDateTime.now(), lblEmpId.getText(),txtEmail.getText(), orderDetailsList);
+            loginEmployee.setOrderCount(loginEmployee.getOrderCount()+1);
+
+            employeeService.updateEmployee(loginEmployee);
             orderService.placeOrder(order);
 
             cartTMObservableList.clear();
