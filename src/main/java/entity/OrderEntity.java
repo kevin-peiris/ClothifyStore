@@ -25,6 +25,8 @@ public class OrderEntity {
 
     private String cusEmail;
 
+    private Double total;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderDetailsEntity> orderDetails;
 }

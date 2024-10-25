@@ -252,7 +252,8 @@ public class OrderController implements Initializable {
             itemTbl.refresh();
 
             cartTMObservableList.add(new CartTM(itemId,name,qty,price,size,total,selectedItem.getImage()));
-            calcNetTotal();
+            lblSubTotal.setText("Sub Total :- "+calcNetTotal()+"/=");
+
 
             cartTbl.setItems(cartTMObservableList);
             lblItemCount.setText("Item Count :- "+cartTMObservableList.size());
@@ -269,13 +270,13 @@ public class OrderController implements Initializable {
         }
     }
 
-    private void calcNetTotal(){
+    private Double calcNetTotal(){
         Double total=0.0;
 
         for (CartTM cartTM: cartTMObservableList){
             total+=cartTM.getTotal();
         }
-        lblSubTotal.setText("Sub Total :- "+total.toString()+"/=");
+        return total;
     }
 
     @FXML
@@ -302,10 +303,10 @@ public class OrderController implements Initializable {
             List<OrderDetails> orderDetailsList=new ArrayList<>();
 
             cartTMObservableList.forEach(obj->{
-                orderDetailsList.add(new OrderDetails(lblOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice(),obj.getSize(),obj.getTotal(),obj.getImage()));
+                orderDetailsList.add(new OrderDetails(lblOrderId.getText(),obj.getItemId(),obj.getQty(), obj.getPrice(),obj.getSize(),obj.getTotal()));
             });
 
-            Order order = new Order(lblOrderId.getText(), LocalDateTime.now(), lblEmpId.getText(),txtEmail.getText(), orderDetailsList);
+            Order order = new Order(lblOrderId.getText(), LocalDateTime.now(), lblEmpId.getText(),txtEmail.getText(),calcNetTotal(), orderDetailsList);
             loginEmployee.setOrderCount(loginEmployee.getOrderCount()+1);
 
             employeeService.updateEmployee(loginEmployee);
@@ -365,7 +366,7 @@ public class OrderController implements Initializable {
             viewItemName.setText("");
             cartViewImage.setImage(null);
 
-            calcNetTotal();
+            lblSubTotal.setText("Sub Total :- "+calcNetTotal()+"/=");
             lblItemCount.setText("Item Count :- " + cartTMObservableList.size());
         }else{
             Alert alert=new Alert(Alert.AlertType.WARNING,"Select a table row to delete");

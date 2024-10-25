@@ -46,15 +46,24 @@ public class AdminMainController implements Initializable {
     @FXML
     private Label lblOrderCount;
 
+    @FXML
+    private Label lblProfit;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Employee> employees = employeeService.getAll();
         ObservableList<Item> items = itemService.getAll();
         ObservableList<Order> orders = orderService.getAll();
 
+        Double profit = 0.0;
+        for (Order order : orders) {
+            profit+=order.getTotal();
+        }
+
         lblEmpCount.setText(String.valueOf(employees.size()));
         lblItemCount.setText(String.valueOf(items.size()));
         lblOrderCount.setText(String.valueOf(orders.size()));
+        lblProfit.setText(profit+"/=");
 
         XYChart.Series<String, Number> empSeries = new XYChart.Series<>();
         empSeries.setName("Employee Sales Performance");
@@ -146,7 +155,31 @@ public class AdminMainController implements Initializable {
     }
 
     @FXML
-    void OrderPageOnAction(ActionEvent event) {
-
+    void OrderReportsPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order_reports.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    closeEvent.consume();
+                }
+            });
+            stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

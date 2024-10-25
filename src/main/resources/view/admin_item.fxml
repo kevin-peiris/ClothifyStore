@@ -306,17 +306,17 @@
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="6.0" layoutY="275.0" onAction="#OrderPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order" textFill="WHITE">
-                     <font>
-                        <Font name="Lucida Sans Unicode" size="18.0" />
-                     </font>
-                  </JFXButton>
                   <JFXButton layoutX="6.0" layoutY="75.0" onAction="#AdminMainPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Admin Main" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>
                   </JFXButton>
                   <JFXButton layoutX="6.0" layoutY="125.0" onAction="#EmployeePageOnAction" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #2979FF;" text="Employee" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Unicode" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="6.0" layoutY="274.0" onAction="#OrderReportsPageOnAction" prefHeight="42.0" prefWidth="159.0" style="-fx-background-color: #2979FF;" text="Order Reports" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Unicode" size="18.0" />
                      </font>

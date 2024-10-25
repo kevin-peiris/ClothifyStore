@@ -41,7 +41,15 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
         ObservableList<OrderDetails> orderDetailsList = FXCollections.observableArrayList();
 
         for (OrderDetailsEntity entity : entityList) {
-            orderDetailsList.add(new ModelMapper().map(entity, OrderDetails.class));
+            OrderDetails dto = new OrderDetails();
+            dto.setId(entity.getId());
+            dto.setOrderId(entity.getOrder().getOrderId());
+            dto.setItemId(entity.getItem().getItemId());
+            dto.setQty(entity.getQty());
+            dto.setPrice(entity.getPrice());
+            dto.setSize(entity.getSize());
+            dto.setTotal(entity.getTotal());
+            orderDetailsList.add(dto);
         }
 
         return orderDetailsList;
@@ -67,4 +75,6 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 
         return orderDetails;
     }
+
+
 }

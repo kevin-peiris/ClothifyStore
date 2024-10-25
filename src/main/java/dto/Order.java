@@ -16,5 +16,6 @@ public class Order {
     private LocalDateTime dateTime;
     private String empId;
     private String cusEmail;
+    private Double total;
     private List<OrderDetails> orderDetailsList;
 }

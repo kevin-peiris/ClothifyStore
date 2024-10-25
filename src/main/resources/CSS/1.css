@@ -37,3 +37,16 @@
     -fx-text-fill: white;
     -fx-font-size: 18px;
 }
+
+.chart-bar {
+    -fx-bar-fill:  #2979FF;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.axis-label, .axis-tick-mark {
+    -fx-text-fill: black;
+}

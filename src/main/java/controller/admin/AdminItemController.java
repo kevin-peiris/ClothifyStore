@@ -571,8 +571,32 @@ public class AdminItemController implements Initializable {
     }
 
     @FXML
-    void OrderPageOnAction(ActionEvent event) {
-
+    void OrderReportsPageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/order_reports.fxml"))));
+            stage.setResizable(false);
+            stage.setOnCloseRequest(closeEvent -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "You might have unsaved changes. Do you want to exit?");
+                if (alert.showAndWait().get() == ButtonType.OK) {
+                    Stage adminStage = new Stage();
+                    try {
+                        adminStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/admin_main.fxml"))));
+                        adminStage.setResizable(false);
+                        adminStage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    closeEvent.consume();
+                }
+            });
+            stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean isNumeric(String str) {

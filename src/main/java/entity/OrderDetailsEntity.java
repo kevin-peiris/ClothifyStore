@@ -30,9 +30,7 @@ public class OrderDetailsEntity {
 
     private String size;
 
-    private double total;
+    private Double total;
 
-    @Lob
-    @ Column(name = "image", columnDefinition = "LONGBLOB")
-    private byte[] image;
+
 }

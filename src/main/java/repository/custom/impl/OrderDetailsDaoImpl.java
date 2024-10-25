@@ -1,11 +1,16 @@
 package repository.custom.impl;
 
+import dto.OrderDetails;
 import entity.OrderDetailsEntity;
+import jakarta.persistence.TypedQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import repository.custom.OrderDetailsDao;
 import util.HibernateUtil;
+
+import java.util.List;
+
 
 public class OrderDetailsDaoImpl implements OrderDetailsDao {
 
@@ -63,4 +68,6 @@ public class OrderDetailsDaoImpl implements OrderDetailsDao {
 
         return orderDetails;
     }
+
+
 }
